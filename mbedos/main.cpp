@@ -38,7 +38,7 @@ SpwfSAInterface wifi(MBED_CONF_APP_WIFI_TX, MBED_CONF_APP_WIFI_RX);
 #endif
 #define SCALE_MULTIPLIER    0.004
 static EventQueue event_queue(/* event count */ 16 * EVENTS_EVENT_SIZE);
-#define IP_address  "172.20.10.8"
+#define IP_address  "192.168.43.235"
 #define Port_number 54087
 #define SEND_INT    5
 #define SAMPLE_RATE 2
@@ -127,7 +127,7 @@ public:
         check_left_right(right, left);
         check_up_down(up, down);
         check_jump(jump);
-        if(input){
+        if(/*input*/ button == 1){
             _hit = 1;
         }
         if(_hit == 1) {
@@ -183,7 +183,7 @@ public:
         if (0 != response){
             printf("Error opening: %d\n", response);
         }
-        /*
+        /*110.26.124.192
         response = _socket->connect(addr);
     
         if (0 != response){
