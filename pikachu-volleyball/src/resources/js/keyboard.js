@@ -154,7 +154,7 @@ export class PikaKeyboard extends PikaUserInput {
     }
     else { this.jjump = 0; }
 
-    if (!data1.hit) {
+    if (data1.hit) {
       this.powerHit = 1;
     }
     else {

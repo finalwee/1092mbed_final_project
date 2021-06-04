@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
+//#include "InterruptIn.h"
 #include "mbed.h"
-#include "TCPSocket.h"
-#include "netsocket/TCPServer.h"
+//#include "TCPSocket.h"
+//#include "netsocket/TCPServer.h"
+#include "stm32l475e_iot01.h"
 #include "stm32l475e_iot01_accelero.h"
 #include "stm32l475e_iot01_gyro.h"
 #include <cstdint>
@@ -47,6 +49,7 @@ static EventQueue event_queue(/* event count */ 16 * EVENTS_EVENT_SIZE);
 #define Rotation_threshold 1
 
 InterruptIn button(USER_BUTTON);
+//DigitalIn button(BUTTON_USER);
 DigitalIn input(D7);
 SocketAddress addr(IP_address,Port_number);
 
@@ -127,19 +130,20 @@ public:
         check_left_right(right, left);
         check_up_down(up, down);
         check_jump(jump);
-        if(/*input*/ button == 1){
-            _hit = 1;
+        if(/*input*/ !button){
+            //_hit = 1;
+            hit = 1;
         }
-        if(_hit == 1) {
+        /*if(_hit == 1) {
             check++;
         }
         hit = _hit;
-        if(check == 10) {
+        if(check == 1) {
             _hit = 0;
         }
         if(_hit == 0){
             check = 0;
-        }
+        }*/
         
     }
 
@@ -151,8 +155,8 @@ private:
     float rotation_distance = 0;
     int accumulate_y = 0;
     int accumulate_x = 0;
-    int8_t _hit = 0;
-    int8_t check = 0;
+    //int8_t _hit = 0;
+    //int8_t check = 0;
     int   _AccOffset[3] = {};
     float _GyroOffset[3] = {};
 };
@@ -213,7 +217,7 @@ public:
         _sensor->getAction(right, left, up, down, hit, jump);
         int len = sprintf(data,"{\"right\":%d,\"left\":%d,\"up\":%d,\"down\":%d,\"hit\":%d,\"jump\":%d}",right,
                                         left, up, down, hit, jump);
-        printf("{\"right\":%d,\"left\":%d,\"up\":%d,\"down\":%d,\"hit\":%d,\"jump\":%d\n}",right,left, up, down, hit,jump);
+        //printf("{\"right\":%d,\"left\":%d,\"up\":%d,\"down\":%d,\"hit\":%d,\"jump\":%d\n}",right,left, up, down, hit,jump);
         /*
         printf("Left: %d\n", left);
         printf("Right: %d\n", right);
@@ -248,7 +252,7 @@ int main()
    printf("=========================================\n");
    printf("==Pikachu Volleyball(STM32 and WiFi)== \n");
    printf("=========================================\n");
-   button.fall(&reset);
+   //button.fall(&reset);
    event_queue.dispatch_forever();
    printf("\nDone\n");
 }

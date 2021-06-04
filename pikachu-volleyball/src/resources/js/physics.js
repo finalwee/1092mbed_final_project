@@ -809,7 +809,7 @@ function letComputerDecideUserInput(player, ball, theOtherPlayer, userInput) {
 
   let virtualExpectedLandingPointX = ball.expectedLandingPointX;
   if (
-    Math.abs(ball.x - player.x) > 100 &&
+    Math.abs(ball.x - player.x) > 70 &&
     Math.abs(ball.xVelocity) < player.computerBoldness + 5
   ) {
     const leftBoundary = Number(player.isPlayer2) * GROUND_HALF_WIDTH;
