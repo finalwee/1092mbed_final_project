@@ -132,7 +132,7 @@ export class PikachuVolleyball {
     }
     // catch keyboard input and freeze it
     this.keyboardArray[0].getInput();
-    this.keyboardArray[1].getInput();
+    this.keyboardArray[1].getInput2();
     this.state();
   }
 
