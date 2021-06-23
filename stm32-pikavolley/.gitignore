@@ -1,0 +1,9 @@
+/BUILD
+.mbed
+/wifi-ism43362
+/mbed-os
+/BSP_B-L475E-IOT01
+BUILD
+BSP_B-L475E-IOT01
+mbed-os
+wifi-ism43362
